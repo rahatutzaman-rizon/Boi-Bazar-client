@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import { Home } from "../pages/Home/Home";
 import Shop from "../pages/Shop/Shop";
@@ -15,6 +15,8 @@ import Logout from "../pages/Logout";
 import ErrorPage from "../pages/shared/ErrorPage";
 import About from "../pages/about/About";
 import Blog from "../pages/blog/Blog";
+import Specific from "../pages/Home/Specific/Specific";
+
 
 const router = createBrowserRouter([
   {
@@ -24,7 +26,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <Home />,
+        loader:()=>fetch('http://localhost:5000/all-books'),
       },
       {
         path: "/all-book",
@@ -43,7 +46,7 @@ const router = createBrowserRouter([
         path: "/blog",
         element: <Blog/>
       },
-
+      
       {
         path: "/add-book",
         element: <UploadBook></UploadBook>
@@ -60,7 +63,13 @@ const router = createBrowserRouter([
       { path: "/admin/dashboard/edit-books/:id", element: <EditBooks />,
       loader: ({ params }) => fetch(`http://localhost:5000/book/${params.id}`)
     },
+    
     ],
+  },
+  {
+    path: "/specific/:id",
+    element:<PrivateRoute><Specific></Specific></PrivateRoute>,
+    loader:()=>fetch('http://localhost:5000/all-books'),
   },
   {
     path: "login",
