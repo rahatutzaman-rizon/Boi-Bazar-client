@@ -1,19 +1,22 @@
 
-import { Outlet } from 'react-router-dom'
+import { useContext } from 'react'
 import './App.css'
-import Navbar from './Component/Home/Navbar'
-import Footer from './Component/Shared/Footer'
+import { Outlet } from 'react-router-dom'
+import { AuthContext } from './contexts/AuthProvider'
+import Navbar from './pages/shared/Navbar'
+import FooterMain from './pages/shared/FooterMain'
 
 function App() {
 
-
+  const {user} = useContext(AuthContext)
   return (
-   
-     <div>
-     <Navbar></Navbar>
-<Outlet></Outlet>
-<Footer></Footer>
-     </div>
+    <>
+      <Navbar/>
+      <div className='min-h-screen'>
+      <Outlet/>
+      </div>
+      <FooterMain/>
+    </>
   )
 }
 
