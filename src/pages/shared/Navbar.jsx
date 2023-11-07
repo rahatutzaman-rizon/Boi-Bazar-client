@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // import icons from react icons
-import { FaXmark, FaBars, FaBarsStaggered, FaBlog } from "react-icons/fa6";
+import { FaXmark, FaBars, FaBarsStaggered, FaMap } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -33,6 +33,7 @@ const Navbar = () => {
         { link: "Home", path: "/" },
         { link: "About", path: "/about" },
         { link: "All Book", path: "/all-book" },
+        { link: "Add Book", path: "/add-book" },
         { link: "Dashbord", path: "/admin/dashboard" },
         { link: "Login", path: "/login" },
     ];
@@ -41,12 +42,12 @@ const Navbar = () => {
             <nav className={`py-4 lg:px-24 px-4 ${isSticky ? "sticky top-0 left-0 right-0 bg-blue-300" : ""
                 }`}>
                 <div className="flex justify-between items-center text-base gap-8">
-                    <Link to="/" className="text-2xl font-bold text-blue-700 flex items-center gap-2"><FaBlog className="inline-block"/>Books</Link>
+                    <Link to="/" className="text-3xl font-bold text-purple-500  flex items-center gap-2"><FaMap className="inline-block"/>Books</Link>
 
-                    <ul className="md:flex space-x-12 hidden navitems">
+                    <ul className="md:flex space-x-12 hidden navitems  ">
 
                         {
-                            navItems.map(({ link, path }) => <Link key={link} to={path}  className="link block text-base cursor-pointer uppercase text-black hover:text-blue-700">
+                            navItems.map(({ link, path }) => <Link key={link} to={path}  className="link block font-bold text-base cursor-pointer uppercase text-black hover:text-blue-700">
                                 {link}
                             </Link>)
                         }

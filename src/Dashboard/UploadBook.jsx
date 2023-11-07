@@ -4,25 +4,10 @@ import { Button, Checkbox, Label, Select, TextInput, Textarea } from 'flowbite-r
 
 const UploadBook = () => {
   const bookCategories = [
-    "Fiction",
-    "Non-fiction",
-    "Mystery",
-    "Programming",
-    "Science fiction",
-    "Fantasy",
-    "Horror",
-    "Biography",
-    "Autobiography",
-    "History",
-    "Self-help",
-    "Business",
-    "Memoir",
-    "Poetry",
-    "Children's books",
-    "Travel",
-    "Religion and spirituality",
-    "Science",
-    "Art and design",
+    "programming",
+    "electronics",
+    "software",
+    "networking",
   ];
 
 
@@ -39,20 +24,22 @@ const UploadBook = () => {
     event.preventDefault();
     const form = event.target;
 
-    const bookTitle = form.bookTitle.value;
-    const authorName = form.authorName.value;
-    const imageURL = form.imageURL.value;
+    const name = form.name.value;
+    const author = form.author.value;
+    const image = form.imageURL.value;
     const category = form.categoryName.value;
     const bookDescription = form.bookDescription.value;
-    const bookPDFURL = form.bookPDFURL.value;
+    const rating = form.rating.value;
+    const quantity = form.quantity.value;
 
     const bookObj = {
-      bookTitle,
-      authorName,
-      imageURL,
+      name,
+      author,
+      image,
       category,
       bookDescription,
-      bookPDFURL,
+      rating,
+      quantity,
     };
     // console.log(dataObj)
     fetch("http://localhost:5000/upload-book", {
@@ -85,16 +72,16 @@ const UploadBook = () => {
           <div className='lg:w-1/2'>
             <div className="mb-2 block">
               <Label
-                htmlFor="bookTitle"
-                value="Book Title"
+                htmlFor="name"
+                value="name"
               />
             </div>
             <TextInput
-              id="bookTitle"
+              id="name"
               placeholder="Book Name"
               required
               type="text"
-              name='bookTitle'
+              name='name'
               className='w-full'
             />
           </div>
@@ -103,16 +90,16 @@ const UploadBook = () => {
           <div className='lg:w-1/2'>
             <div className="mb-2 block">
               <Label
-                htmlFor="authorName"
+                htmlFor="author"
                 value="Author Name"
               />
             </div>
             <TextInput
-              id="authorName"
-              placeholder="Author Name"
+              id="author"
+              placeholder="Author"
               required
               type="text"
-              name='authorName'
+              name='author'
               className='w-full'
             />
           </div>
@@ -125,16 +112,16 @@ const UploadBook = () => {
           <div className='lg:w-1/2'>
             <div className="mb-2 block">
               <Label
-                htmlFor="imageURL"
-                value="Book Image URL"
+                htmlFor="image"
+                value="image"
               />
             </div>
             <TextInput
-              id="imageURL"
+              id="image"
               placeholder="Image URL"
               required
               type="text"
-              name='imageURL'
+              name='image'
               className='w-full'
             />
           </div>
@@ -164,8 +151,46 @@ const UploadBook = () => {
 
         </div>
 
-        {/* full width div for book description */}
+       
+
+        <div className=''>
+          <div className="mb-2 block">
+            <Label
+              htmlFor="quantity of the book"
+              value="quantity of the book"
+            />
+          </div>
+          <Textarea
+            id="quantity"
+            placeholder="quantity of the book"
+            required
+            type="number"
+            name='quantity'
+            className='w-1/5'
+            rows={4}
+          />
+        </div>
+     
         <div>
+          <div className="mb-2 block">
+            <Label
+              htmlFor="rating"
+              value="rating"
+            />
+          </div>
+          <Textarea
+            id='rating'
+            placeholder="rating"
+            required
+            type="number"
+            name='rating'
+            className='w-1/5'
+            rows={4}
+          />
+        </div>
+
+         {/* full width div for book description */}
+         <div>
           <div className="mb-2 block">
             <Label
               htmlFor="bookDescription"
@@ -184,28 +209,12 @@ const UploadBook = () => {
         </div>
 
 
-        {/* book pdf url */}
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="bookPDFURL"
-              value="Book PDF Link"
-            />
-          </div>
-          <TextInput
-            id="bookPDFURL"
-            placeholder="Paste Book PDF URL here"
-            required
-            type="text"
-            name='bookPDFURL'
-            className='w-full'
-          />
-        </div>
-
+       
 
         {/* Submit btn */}
-        <Button type="submit" className='mt-5'>
-          Upload book
+        <Button className="bg-red-300 mt-5" type="submit" 
+        >
+         Add Book
         </Button>
 
       </form>
