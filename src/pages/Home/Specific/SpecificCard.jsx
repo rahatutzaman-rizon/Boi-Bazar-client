@@ -1,10 +1,10 @@
-import {  useParams } from "react-router-dom";
+import {  Link, useParams } from "react-router-dom";
 
 
 const SpecificCard = ({item}) => {
   const {id}=useParams();
   console.log(item)
-    const {image,name,author,category,rating}=item;
+    const {_id,image,name,author,category,rating}=item;
    
     return (
    
@@ -31,11 +31,9 @@ const SpecificCard = ({item}) => {
     
 
     <div className="flex">
-    {/* <button className="btn btn-outline btn-success"> <Link to={`/moredetail/${_id}`}>More details </Link></button>
-      <button className="btn btn-outline btn-error">
-      <Link to={`/updateproduct/${_id}`}>Update</Link>
-      
-      </button> */}
+    <button className="btn btn-outline btn-success"> 
+    <Link to={`/moredetail/${_id}`}> Details 
+    </Link></button>
       
     </div>
     </div>

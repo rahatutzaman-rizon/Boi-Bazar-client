@@ -1,47 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Card, Spinner } from 'flowbite-react';
-import { AuthContext } from '../../contexts/AuthProvider';
+import { useLoaderData } from "react-router-dom";
+import CardShop from "./CardShop";
 
-export default function Shop() {
-  const {loading } = useContext(AuthContext);
-  const [books, setBooks] = useState([]);
-// fetching data
-  useEffect(() =>{
-    fetch('http://localhost:5000/all-books')
-    .then(res => res.json())
-    .then(data => setBooks(data))
-  }, [loading]);
-
-    // loader
-    if (loading) {
-      return <div className="text-center mt-28">
-          <Spinner aria-label="Center-aligned spinner example" />
-      </div>
-  }
-
-
+const Shop = () => {
+  const all=useLoaderData();
+  console.log(all)
   return (
-    <div className='my-28 px-4 lg:px-24'>
-      <h2 className='text-3xl font-bold text-center mb-16 z-40'>All Books are Available Here</h2>
-        <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8'>
-          {
-            books.map(book => <Card>
-              <img src={book.imageURL} alt="" className='h-96' />
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                <p>
-                  {book.bookTitle}
-                </p>
-              </h5>
-              <p className="font-normal text-gray-700 dark:text-gray-400">
-                <p>
-                  Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order....
-                </p>
-              </p>
+    <div>
+       <h3 className="text-center my-8 mb-4 text-3xl bg-teal-600 text-blue-200 mt-24">All Books</h3>
+            <div   className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mx-16 gap-4 my-4 py-10 ml-20 mr-4 space-y-4'>
+            {
+            all.map((brand,index)=>
+            <CardShop
+            key={index}
+            brand={brand}></CardShop> )
+        }
 
-              <button className='px-4 py-2 bg-blue-600 text-white rounded'>Buy Now</button>
-            </Card>)
-          }
-        </div>
+   
+</div>
     </div>
-  )
-}
+  );
+};
+
+export default Shop;

@@ -1,27 +1,26 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import { Button, Modal } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 
 const Logout = () => {
-    const [openModal, setOpenModal] = useState("");
+  const [openModal, setOpenModal] = useState("");
   const props = { openModal, setOpenModal };
 
+  // Use context
+  const { logOut } = useContext(AuthContext);
 
-//   use context 
-const {logOut} = useContext(AuthContext);
-
-  const hangleSignOut = () => {
-    // console.log("sign out");
+  const handleSignOut = () => {
     logOut().then(() => {
-        // Sign-out successful.
-      }).catch((error) => {
-        // An error happened.
-      })
+      // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+    });
   }
+
   return (
     <div className='h-screen flex items-center justify-center'>
-        <Button onClick={() => props.setOpenModal('default')}>Click here to Logout</Button>
+      <Button onClick={() => props.setOpenModal('default')}>Click here to Logout</Button>
       <Modal show={props.openModal === 'default'} onClose={() => props.setOpenModal(undefined)}>
         <Modal.Header>Terms of Service</Modal.Header>
         <Modal.Body>
@@ -31,21 +30,25 @@ const {logOut} = useContext(AuthContext);
               companies around the world are updating their terms of service agreements to comply.
             </p>
             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              The European Unions General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to
+              The European Union's General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to
               ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as
               possible of high-risk data breaches that could personally affect them.
             </p>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Link to="/" onClick={hangleSignOut}><Button onClick={() => props.setOpenModal(undefined)}>Yes, I want to sign out!</Button></Link>
-          <Button color="gray" onClick={() => props.setOpenModal(undefined)}>
+          <Link to="/" onClick={handleSignOut}>
+            <Button onClick={() => props.setOpenModal(undefined)} className="bg-green-500 text-white">
+              Yes, I want to sign out!
+            </Button>
+          </Link>
+          <Button color="red" onClick={() => props.setOpenModal(undefined)}>
             Decline
           </Button>
         </Modal.Footer>
       </Modal>
     </div>
-  )
+  );
 }
 
-export default Logout
+export default Logout;

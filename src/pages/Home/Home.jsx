@@ -17,7 +17,7 @@ export const Home = () => {
     <div>
       <Banner/>
  <h2 className="text-4xl my-6 font-bold text-center">Books Category</h2>
-            <div   className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-16 gap-8 my-4 py-10 ml-12 mr-12'>
+            <div   className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mx-16 gap-8 my-4 py-10 ml-24 text-center '>
             {
               uniqueCategories.map((category, index)=> 
           <CategoryCard key={index} category={category} />

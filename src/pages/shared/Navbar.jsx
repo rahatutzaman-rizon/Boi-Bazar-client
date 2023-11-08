@@ -1,16 +1,49 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 // import icons from react icons
-import { FaXmark, FaBars, FaBarsStaggered, FaMap } from "react-icons/fa6";
+import {  FaMap } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import sun from "./light.png";
+import moon from "./dark.png";
+import { AuthContext } from "../../contexts/AuthProvider";
+//import Logout from "../Logout";
+
+
+
 
 const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+        
+const {user,logOut}=useContext(AuthContext)
+console.log(user)
+   
     const [isSticky, setIsSticky] = useState(false);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    const [theme, setTheme] = useState(
+        localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+      );
+         // update state on toggle
+    const handleToggle = (e) => {
+        if (e.target.checked) {
+          setTheme("dark");
+        } else {
+          setTheme("light");
+        }
+      };
+    
+      // set theme state in localstorage on mount & also update localstorage on state change
+      useEffect(() => {
+        localStorage.setItem("theme", theme);
+        const localTheme = localStorage.getItem("theme");
+        // add custom data-theme attribute to html tag required to update theme using DaisyUI
+        document.querySelector("html").setAttribute("data-theme", localTheme);
+      }, [theme]);
+  
+      
+
+    const handlelogout=()=>{
+        logOut().then()
+      }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,20 +64,35 @@ const Navbar = () => {
 
     const navItems = [
         { link: "Home", path: "/" },
-        { link: "About", path: "/about" },
+        
         { link: "All Book", path: "/all-book" },
         { link: "Add Book", path: "/add-book" },
+        { link: "Borrow Book", path: "/borrow" },
         { link: "Dashbord", path: "/admin/dashboard" },
         { link: "Login", path: "/login" },
     ];
     return (
         <header className="w-full bg-transparent fixed top-0 left-0 right-0 transition-all ease-in duration-300">
-            <nav className={`py-4 lg:px-24 px-4 ${isSticky ? "sticky top-0 left-0 right-0 bg-blue-300" : ""
+            <nav className={`py-4 lg:px-4 px-4 ${isSticky ? "sticky top-0 left-0 right-0 bg-blue-300" : ""
                 }`}>
-                <div className="flex justify-between items-center text-base gap-8">
-                    <Link to="/" className="text-3xl font-bold text-purple-500  flex items-center gap-2"><FaMap className="inline-block"/>Books</Link>
+                <div className="flex justify-between items-center text-base gap-2">
+                    <Link to="/" className="text-3xl font-bold text-purple-500  flex items-center "><FaMap className="inline-block"/>বই বাজার</Link>
 
-                    <ul className="md:flex space-x-12 hidden navitems  ">
+                    <button className="btn btn-square btn-ghost">
+          <label className="swap swap-rotate w-12 h-12">
+            <input
+              type="checkbox"
+              onChange={handleToggle}
+              // show toggle image based on localstorage theme
+              checked={theme === "light" ? false : true}
+            />
+            {/* light theme sun image */}
+            <img src={sun} alt="light" className="w-8 h-8 swap-on" />
+            {/* dark theme moon image */}
+            <img src={moon} alt="dark" className="w-8 h-8 swap-off" />
+          </label>
+        </button>
+                    <ul className="md:flex space-x-2 hidden navitems  ">
 
                         {
                             navItems.map(({ link, path }) => <Link key={link} to={path}  className="link block font-bold text-base cursor-pointer uppercase text-black hover:text-blue-700">
@@ -52,40 +100,25 @@ const Navbar = () => {
                             </Link>)
                         }
                     </ul>
+                    { 
+        user &&(
+          <button onClick={handlelogout} className="btn btn-success">logout</button>
+        )
+      }
+  
+  <p>{user?.email}</p>
 
-                    <div className="space-x-12 hidden lg:flex items-center">
-                       <button> <FaBarsStaggered className="w-5 hover:text-blue-700" /></button>
-                    </div>
-
-                    {/* menu btn, visible on mobile screen */}
-                    <div className="md:hidden">
-                        <button
-                            onClick={toggleMenu}
-                            className="text-black focus:outline-none"
-                        >
-                            {isMenuOpen ? (
-                                <FaXmark className="h-6 w-6 text-black" />
-                            ) : (
-                                <FaBarsStaggered className="h-5 w-5 text-black" />
-                            )}
-                        </button>
-                    </div>
+ 
+        
                 </div>
 
-                <div
-                    className={`space-y-4 px-4 mt-16 py-7 bg-blue-700 ${isMenuOpen ? "block fixed top-0 right-0 left-0" : "hidden"}`}
-                >
-                    {
-                        navItems.map(({ link, path }) => <a
-                            href={path} 
-                            key={link}
-                            onClick={toggleMenu}
-                            className="block  text-white hover:text-gray-500"
-                        >
-                            {link}
-                        </a>)
-                    }
-                </div>
+                
+                    
+ 
+
+
+        
+                
             </nav>
         </header>
     );

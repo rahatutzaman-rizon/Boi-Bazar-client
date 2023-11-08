@@ -28,11 +28,16 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-    const logOut = () =>{
-        localStorage.removeItem('genius-token');
-        return signOut(auth);
-    }
+    // const logOut = () =>{
+    //     localStorage.removeItem('genius-token');
+    //     return signOut(auth);
+    // }
 
+    
+    const logOut= ()=>{
+        setLoading(true);
+        return signOut(auth);
+     }
     useEffect( () =>{
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
             console.log(currentUser);

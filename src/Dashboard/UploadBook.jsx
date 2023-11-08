@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 
-import { Button, Checkbox, Label, Select, TextInput, Textarea } from 'flowbite-react';
+import { Button, Label, Select, TextInput, Textarea } from 'flowbite-react';
+import Swal from 'sweetalert2';
 
 const UploadBook = () => {
   const bookCategories = [
@@ -54,7 +55,8 @@ const UploadBook = () => {
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        alert("Book updated successfully!!!!");
+        Swal.fire("Book updated successfully!!!!");
+        
         form.reset();
       });
   };
@@ -193,16 +195,16 @@ const UploadBook = () => {
          <div>
           <div className="mb-2 block">
             <Label
-              htmlFor="bookDescription"
-              value="Book Description"
+              htmlFor="desc"
+              value="desc"
             />
           </div>
           <Textarea
-            id="bookDescription"
+            id="desc"
             placeholder="Book Description"
             required
             type="text"
-            name='bookDescription'
+            name='desc'
             className='w-full'
             rows={4}
           />

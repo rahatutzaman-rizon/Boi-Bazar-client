@@ -16,6 +16,7 @@ import ErrorPage from "../pages/shared/ErrorPage";
 import About from "../pages/about/About";
 import Blog from "../pages/blog/Blog";
 import Specific from "../pages/Home/Specific/Specific";
+import Moredetails from "../pages/Home/Specific/Moredetails";
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       {
         path: "/all-book",
         element: <Shop />,
+        loader:()=>fetch('http://localhost:5000/all-books'),
       },
       {
         path: "/book/:id",
@@ -70,6 +72,12 @@ const router = createBrowserRouter([
     path: "/specific/:id",
     element:<PrivateRoute><Specific></Specific></PrivateRoute>,
     loader:()=>fetch('http://localhost:5000/all-books'),
+  },
+
+  {
+    path: "/moredetail/:id",
+    element:<PrivateRoute><Moredetails></Moredetails></PrivateRoute>,
+    loader:({params})=> fetch(`http://localhost:5000/moredetail/${params.id}`)  
   },
   {
     path: "login",
