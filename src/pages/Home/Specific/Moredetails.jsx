@@ -24,9 +24,24 @@ const Moredetails = () => {
         <p className="text-sm mb-4">rating : {rating}</p>
         <p className="text-sm mb-4">Book description goes here... {desc}</p>
         <div className="flex justify-between">
-          <Link href="#" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            Borrow Book
-          </Link>
+
+        {/* Open the modal using document.getElementById('ID').showModal() method */}
+<button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button>
+<dialog id="my_modal_1" className="modal">
+  <div className="modal-box">
+    <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Press ESC key or click the button below to close</p>
+    <div className="modal-action">
+      <form method="dialog">
+        {/* if there is a button in form, it will close the modal */}
+        <Link to="/borrow" >
+        <button className="btn">Borrow Page</button>
+           </Link>
+      </form>
+    </div>
+  </div>
+</dialog>
+          
           <Link href="#" className="bg-teal-400 text-gray-800 px-4 py-2 rounded hover:bg-teal-600">
             Add to Wishlist
           </Link>

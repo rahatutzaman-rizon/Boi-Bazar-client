@@ -17,6 +17,7 @@ import About from "../pages/about/About";
 import Blog from "../pages/blog/Blog";
 import Specific from "../pages/Home/Specific/Specific";
 import Moredetails from "../pages/Home/Specific/Moredetails";
+import BorrowBook from "../pages/Home/Specific/BorrowBook";
 
 
 const router = createBrowserRouter([
@@ -48,7 +49,10 @@ const router = createBrowserRouter([
         path: "/blog",
         element: <Blog/>
       },
-      
+      {
+        path:"/borrow",
+        element:<BorrowBook></BorrowBook>
+      },
       {
         path: "/add-book",
         element: <UploadBook></UploadBook>

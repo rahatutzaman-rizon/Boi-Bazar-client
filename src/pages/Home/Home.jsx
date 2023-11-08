@@ -2,10 +2,10 @@
 import { Banner } from './Banner'
 
 import FavoriteBook from './FavoriteBook'
-import BestSeller from './BestSeller'
-import OtherBooks from './OtherBooks'
+
+
 import PromoBanner from './PromoBanner'
-import Review from './Review'
+
 
 import { useLoaderData } from 'react-router-dom'
 import CategoryCard from './CategoryCard'
@@ -28,11 +28,11 @@ export const Home = () => {
 </div>
 
       
-      <BestSeller/>
+      
       <FavoriteBook/>
       <PromoBanner/>
-      <OtherBooks/>
-      <Review/>
+    
+     
     </div>
   )
 }
