@@ -13,8 +13,7 @@ import EditBooks from "../Dashboard/EditBooks";
 import Signup from "../pages/Signup";
 import Logout from "../pages/Logout";
 import ErrorPage from "../pages/shared/ErrorPage";
-import About from "../pages/about/About";
-import Blog from "../pages/blog/Blog";
+
 import Specific from "../pages/Home/Specific/Specific";
 import Moredetails from "../pages/Home/Specific/Moredetails";
 import BorrowBook from "../pages/Home/Specific/BorrowBook";
@@ -29,29 +28,23 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader:()=>fetch('http://localhost:5000/all-books'),
+        loader:()=>fetch('https://library-management-server-phi.vercel.app/all-books'),
       },
       {
         path: "/all-book",
-        element: <Shop />,
-        loader:()=>fetch('http://localhost:5000/all-books'),
+        element:<PrivateRoute><Shop /></PrivateRoute> ,
+        loader:()=>fetch('https://library-management-server-phi.vercel.app/all-books'),
       },
       {
         path: "/book/:id",
         element: <SignleBook />,
-        loader: ({ params }) => fetch(`http://localhost:5000/book/${params.id}`)
+        loader: ({ params }) => fetch(`https://library-management-server-phi.vercel.app/book/${params.id}`)
       },
-      {
-        path: "/about",
-        element: <About/>
-      },
-      {
-        path: "/blog",
-        element: <Blog/>
-      },
+     
       {
         path:"/borrow",
-        element:<BorrowBook></BorrowBook>
+        element:<PrivateRoute><BorrowBook></BorrowBook></PrivateRoute>,
+        loader:()=>fetch('https://library-management-server-phi.vercel.app/borrow'),
       },
       {
         path: "/add-book",
@@ -67,7 +60,7 @@ const router = createBrowserRouter([
       { path: "/admin/dashboard/upload", element: <UploadBook /> },
       { path: "/admin/dashboard/manage", element: <ManageBooks /> },
       { path: "/admin/dashboard/edit-books/:id", element: <EditBooks />,
-      loader: ({ params }) => fetch(`http://localhost:5000/book/${params.id}`)
+      loader: ({ params }) => fetch(`https://library-management-server-phi.vercel.app/book/${params.id}`)
     },
     
     ],
@@ -75,14 +68,15 @@ const router = createBrowserRouter([
   {
     path: "/specific/:id",
     element:<PrivateRoute><Specific></Specific></PrivateRoute>,
-    loader:()=>fetch('http://localhost:5000/all-books'),
+    loader:()=>fetch('https://library-management-server-phi.vercel.app/all-books'),
   },
 
   {
     path: "/moredetail/:id",
     element:<PrivateRoute><Moredetails></Moredetails></PrivateRoute>,
-    loader:({params})=> fetch(`http://localhost:5000/moredetail/${params.id}`)  
+    loader:({params})=> fetch(`https://library-management-server-phi.vercel.app/moredetail/${params.id}`)  
   },
+
   {
     path: "login",
     element: <Login />

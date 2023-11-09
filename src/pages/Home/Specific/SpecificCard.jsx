@@ -19,19 +19,19 @@ const SpecificCard = ({item}) => {
  
   <div className="card-body ">
    
-  <h2 className="text-2xl bg-pink-300 text-center">brand :{author}</h2>
-    <h2 className="card-title">
-    {name}
-      <div className="badge badge-secondary">{category}</div>
-    </h2>
+  <h2 className="text-2xl bg-teal-300 text-center"> Name : {name}</h2>
     
-    <div className="card-actions justify-end">
+    <h2 className="text-xl bg-blue-400 text-gray-600"> Author Name : {author}</h2>
+      <div className="btn btn-info">{category}</div>
+   
+    
+    <div className="card-actions justify-center">
        
-      <div className="badge badge-outline bg-red-300">rating : {rating}</div>
+      <div className="btn btn-warning ">rating : {rating}</div>
     
 
-    <div className="flex">
-    <button className="btn btn-outline btn-success"> 
+    <div className="">
+    <button className="btn btn-outline btn-success "> 
     <Link to={`/moredetail/${_id}`}> Details 
     </Link></button>
       

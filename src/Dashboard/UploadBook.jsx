@@ -43,7 +43,7 @@ const UploadBook = () => {
       quantity,
     };
     // console.log(dataObj)
-    fetch("http://localhost:5000/upload-book", {
+    fetch("https://library-management-server-phi.vercel.app/upload-book", {
       method: "POST",
 
       headers: {
