@@ -2,9 +2,12 @@ import { Table } from 'flowbite-react'
 import  { useEffect, useState } from 'react'
 import { Pagination } from 'flowbite-react';
 import { Link } from 'react-router-dom';
+import  {useRef} from 'react';
+import { DownloadTableExcel } from 'react-export-table-to-excel';
 
 const ManageBooks = () => {
     const [allBooks, setAllBooks] = useState([]);
+    const tableRef = useRef(null);
     useEffect(() => {
         fetch(`https://library-management-server-phi.vercel.app/all-books`)
             .then((res) => res.json())
@@ -33,12 +36,22 @@ const ManageBooks = () => {
     const onPageChange = () => setCurrentPage(page);
 
     return (
-        <div className='px-4 my-12'>
+        <div className='px-4 my-18'>
             <h2 className='mb-8 text-3xl font-bold'>Manager Your Books Inventory!</h2>
+
+            <DownloadTableExcel
+                    filename="users table"
+                    sheet="users"
+                    currentTableRef={tableRef.current}
+                >
+
+                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Export excel </button>
+
+                </DownloadTableExcel>
 
             {/* table */}
 
-            <Table className='lg:w-[1180px]'>
+            <Table className='lg:w-[1180px]' ref={tableRef}>
                 <Table.Head>
                     <Table.HeadCell>
                         No.
