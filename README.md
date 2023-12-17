@@ -2,7 +2,7 @@
 # Library mangement system
 
 
-# firebase : https://library-management-ede33.web.app/
+# firebase :  https://dainty-choux-b6b746.netlify.app
 # Feature 
 # 1.student can get their book 
 # 2.catagrories book selection
