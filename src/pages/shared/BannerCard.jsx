@@ -9,24 +9,19 @@ import 'swiper/css/effect-cards';
 // banner card styles
 import './bannerCard.css'
 
-// import required modules
-import { EffectCards } from 'swiper/modules';
+
 
 function BannerCard() {
   return (
     <div className='banner-card'>
-      <Swiper
-        effect={'cards'}
-        grabCursor={true}
-        modules={[EffectCards]}
-        className="mySwiper"
-      >
-        <SwiperSlide></SwiperSlide>
-        <SwiperSlide></SwiperSlide>
-        <SwiperSlide></SwiperSlide>
-        <SwiperSlide></SwiperSlide>
-        <SwiperSlide></SwiperSlide>
-      </Swiper>
+     
+     <div className="hero-content flex-col lg:flex-row-reverse">
+    <img
+      src="https://i.ibb.co/0Xqg2qY/hand-drawn-flat-design-book-club-illustration-23-2149330600.jpg"
+      className="max-w-sm rounded-lg shadow-2xl"
+    />
+   </div>
+
     </div>
   )
 }

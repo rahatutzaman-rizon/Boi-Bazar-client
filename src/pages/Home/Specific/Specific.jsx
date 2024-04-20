@@ -44,7 +44,7 @@ const Specific = () => {
     <Navbar className="my-4"></Navbar>
     
   
-    <h2 className="my-4 mb-4 text-3xl text-center">Poduct show:</h2>
+    <h1 className="my-16  mb-4 text-3xl text-center font-bold text-teal-500">Book  show:</h1>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     
     {

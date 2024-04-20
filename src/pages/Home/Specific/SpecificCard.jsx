@@ -1,46 +1,42 @@
-import {  Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
+const SpecificCard = ({ item }) => {
+  const { id } = useParams();
+  console.log(item);
+  const { _id, image, name, author, category, rating, quantity } = item;
 
-const SpecificCard = ({item}) => {
-  const {id}=useParams();
-  console.log(item)
-    const {_id,image,name,author,category,rating}=item;
-   
-    return (
-   
-
-       
-
-
-
-
-            <div className="card w-72 bg-base-100 shadow-xl content-center  ml-24 my-8">
-  <img  className="w-36 ml-12"  src={image} alt="" />
- 
-  <div className="card-body ">
-   
-  <h2 className="text-2xl bg-teal-300 text-center"> Name : {name}</h2>
-    
-    <h2 className="text-xl bg-blue-400 text-gray-600"> Author Name : {author}</h2>
-      <div className="btn btn-info">{category}</div>
-   
-    
-    <div className="card-actions justify-center">
-       
-      <div className="btn btn-warning ">rating : {rating}</div>
-    
-
-    <div className="">
-    <button className="btn btn-outline btn-success "> 
-    <Link to={`/moredetail/${_id}`}> Details 
-    </Link></button>
-      
+  return (
+    <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden my-8">
+      <img
+        className="w-full h-48 object-cover"
+        src={image}
+        alt=""
+      />
+      <div className="p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">{name}</h2>
+        <p className="text-gray-600 mb-4">Author: {author}</p>
+        <div className="flex items-center justify-between mb-4">
+          <div className="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs font-semibold">
+            {category}
+          </div>
+          <div className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-semibold">
+            Quantity: {quantity}
+          </div>
+        </div>
+        <div className="flex items-center justify-between">
+          <div className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-semibold">
+            Rating: {rating}
+          </div>
+          <Link
+            to={`/moredetail/${_id}`}
+            className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 transition-colors duration-300"
+          >
+            Details
+          </Link>
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
-</div>
-        
-    );
+  );
 };
 
 export default SpecificCard;

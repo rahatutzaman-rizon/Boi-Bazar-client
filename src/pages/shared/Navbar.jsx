@@ -65,9 +65,10 @@ console.log(user)
     const navItems = [
         { link: "Home", path: "/" },
         
-        { link: "All Book", path: "/all-book" },
-        { link: "Add Book", path: "/add-book" },
+        { link: "All", path: "/all-book" },
+        { link: "Donate Book", path: "/add-book" },
         { link: "Borrow Book", path: "/borrow" },
+        { link: "Donation Book", path: "/add-book" },
         { link: "Dashbord", path: "/admin/dashboard" },
         { link: "Login", path: "/login" },
     ];
@@ -95,7 +96,7 @@ console.log(user)
                     <ul className="md:flex space-x-2 hidden navitems  ">
 
                         {
-                            navItems.map(({ link, path }) => <Link key={link} to={path}  className="link block font-bold text-base cursor-pointer uppercase text-black hover:text-blue-700">
+                            navItems.map(({ link, path }) => <Link key={link} to={path}  className="link block font-bold  text-sm  cursor-pointer uppercase text-black hover:text-blue-700">
                                 {link}
                             </Link>)
                         }
